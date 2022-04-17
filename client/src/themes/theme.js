@@ -12,10 +12,14 @@ const theme = createTheme({
             main: "#fafafa"
         },
         active: {
-            main: "#29b6f6"
+            main: "#0097a7"
         },
         error: {
             main: "#c62828"
+        },
+        disabled: {
+            main: "#EAEAEB",
+            contrastText: "#FFFFFF"
         }
     },
     typography: {

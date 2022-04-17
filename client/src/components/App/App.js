@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import './App.css';
 import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -13,8 +14,21 @@ import Services from '../Services/Services';
 import About from "../About/About"
 import Footer from "../Footer/Footer"
 
-function App() {
-  const footerHeight = "80px"
+export default function App() {
+  const [textTypes, setTextTypes] = useState([])
+  const [activeUser, setActiveUser] = useState({})
+  const footerHeight = "80px";
+
+  useEffect(() => {
+    if (!textTypes.length) {
+      fetch("/api/textTypes", {
+        headers: {
+          "Content-Type": "application/json",
+        }
+      }).then(res => res.json())
+        .then(data => setTextTypes(data));
+    }
+  }, [textTypes])
 
   return (
     <div className="App" style={{ overflow: "scroll" }}>
@@ -26,18 +40,16 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<Services />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/about" element={<About textTypes={textTypes} />} />
               </Routes>
             </Box>
             <Box sx={{ height: footerHeight }}></Box>
           </Box>
           <Box sx={{ minHeight: footerHeight, backgroundColor: "primary.lightest" }}>
-            <Footer />
+            <Footer setActiveUser={setActiveUser} />
           </Box>
         </BrowserRouter>
       </ThemeProvider>
     </div>
   );
-}
-
-export default App;
+};
