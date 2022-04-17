@@ -7,10 +7,11 @@ import TextField from '@mui/material/TextField';
 
 import EditModal from "../Modals/EditModal/EditModal";
 
-export default function About({ textTypes }) {
+export default function About({ textTypes, activeUser }) {
     const [aboutText, setAboutText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [textId, setTextId] = useState("");
+    const [adminUser, setAdminUser] = useState(false)
 
     const getAboutText = (textTypeId) => {
         setIsLoading(true);
@@ -42,6 +43,33 @@ export default function About({ textTypes }) {
         };
     }, [textTypes, aboutText]);
 
+    useEffect(() => {
+        const token = sessionStorage.getItem("token");
+        if (token) {
+            fetch(`/api/auth`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-auth-token": token
+                }
+            }).then(res => {
+                if (!res.ok) {
+                    throw new Error(res.json())
+                }
+                return res.json()
+            }).then(json => {
+                setAdminUser(true)
+            }).catch(err => {
+                console.log(err);
+                setAdminUser(false);
+            })
+        } else {
+            setAdminUser(false)
+        };
+
+        console.log(token);
+    }, [activeUser])
+
+
     return (
         <Box>
             <Box className="App-page-body">
@@ -49,14 +77,16 @@ export default function About({ textTypes }) {
                     <Typography variant="h2" color="primary.light">
                         About Lindsey
                     </Typography>
-                    <Box sx={{ marginLeft: "auto" }}>
-                        <EditModal
-                            id={textId}
-                            title="Edit About Me"
-                            originalContent={aboutText}
-                            updateContent={setAboutText}
-                        />
-                    </Box>
+                    {adminUser &&
+                        <Box sx={{ marginLeft: "auto" }}>
+                            <EditModal
+                                id={textId}
+                                title="Edit About Me"
+                                originalContent={aboutText}
+                                updateContent={setAboutText}
+                            />
+                        </Box>
+                    }
                 </Box>
                 <Box className="About-text-body">
                     {isLoading ? (
