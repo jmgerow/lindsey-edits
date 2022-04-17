@@ -1,0 +1,10 @@
+.NavBar-container {
+    min-height: 100px;
+    padding: 10px 10vw;
+    display: flex;
+}
+
+.NavBar-link {
+    margin-left: 20px;
+    text-decoration: none;
+}
