@@ -1,4 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://jmgerow:uCZYux3iJV74K3XU@lindsey-edits.uelfq.mongodb.net/lindseyEditsDB?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
-}
