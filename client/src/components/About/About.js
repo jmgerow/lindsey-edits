@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
 import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@mui/material/TextField';
+import ProfilePhoto from "../../assets/images/profile_photo.jpg";
 
 import EditModal from "../Modals/EditModal/EditModal";
 
@@ -74,7 +75,7 @@ export default function About({ textTypes, activeUser }) {
         <Box>
             <Box className="App-page-body">
                 <Box sx={{ display: "flex" }}>
-                    <Typography variant="h2" color="primary.light">
+                    <Typography variant="h1" color="primary.light">
                         About Lindsey
                     </Typography>
                     {adminUser &&
@@ -94,21 +95,26 @@ export default function About({ textTypes, activeUser }) {
                             <CircularProgress sx={{ color: "active.main" }} />
                         </Box>
                     ) : (
-                            <TextField
-                                variant="standard"
-                                value={aboutText}
-                                size="small"
-                                fullWidth
-                                multiline
-                                InputProps={{
-                                    disableUnderline: true,
-                                }}
-                                inputProps={{
-                                    sx: {
-                                        color: "primary.main"
-                                    }
-                                }}
-                            />
+                            <Box sx={{ display: "flex" }}>
+                                <Box sx={{ margin: "10px 20px 0 0" }}>
+                                    <img src={ProfilePhoto} alt="banner" height="380px"></img>
+                                </Box>
+                                <TextField
+                                    variant="standard"
+                                    value={aboutText}
+                                    size="small"
+                                    fullWidth
+                                    multiline
+                                    InputProps={{
+                                        disableUnderline: true,
+                                    }}
+                                    inputProps={{
+                                        sx: {
+                                            color: "primary.main"
+                                        }
+                                    }}
+                                />
+                            </Box>
                         )}
                 </Box>
             </Box>

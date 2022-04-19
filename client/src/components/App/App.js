@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import './App.css';
 import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Home from "../Home/Home"
-import theme from "../../themes/theme"
+import Home from "../Home/Home";
+import theme from "../../themes/theme";
 import {
   BrowserRouter,
   Routes,
@@ -11,8 +11,9 @@ import {
 } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import Services from '../Services/Services';
-import About from "../About/About"
-import Footer from "../Footer/Footer"
+import About from "../About/About";
+import Footer from "../Footer/Footer";
+import Contact from "../Contact/Contact";
 
 export default function App() {
   const [textTypes, setTextTypes] = useState([])
@@ -35,12 +36,15 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Box sx={{ minHeight: "100vh", marginBottom: `-${footerHeight}` }}>
-            <NavBar />
-            <Box sx={{ marginTop: "100px" }}>
+            <Box sx={{ height: "100px" }}>
+              <NavBar />
+            </Box>
+            <Box sx={{ height: "100%" }}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/about" element={<About textTypes={textTypes} activeUser={activeUser} />} />
+                <Route path="/contact" element={<Contact />} />
               </Routes>
             </Box>
             <Box sx={{ height: footerHeight }}></Box>

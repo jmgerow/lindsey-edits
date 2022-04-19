@@ -24,12 +24,7 @@ export default function NavBar() {
                 </Grid>
                 <Grid item xs={6}>
                     <Box sx={{ display: "flex", padding: "30px 0" }}>
-                        <Link className="NavBar-link" to="/" style={{ marginLeft: "auto" }}>
-                            <Typography className="NavBar-link" variant="body1" color="primary.light">
-                                Home
-                            </Typography>
-                        </Link>
-                        <Link className="NavBar-link" to="/services">
+                        <Link className="NavBar-link" to="/services" style={{ marginLeft: "auto" }}>
                             <Typography className="NavBar-link" variant="body1" color="primary.light">
                                 Services
                             </Typography>
@@ -37,6 +32,11 @@ export default function NavBar() {
                         <Link className="NavBar-link" to="/about">
                             <Typography className="NavBar-link" variant="body1" color="primary.light">
                                 About
+                            </Typography>
+                        </Link>
+                        <Link className="NavBar-link" to="/contact">
+                            <Typography className="NavBar-link" variant="body1" color="primary.light">
+                                Contact
                             </Typography>
                         </Link>
                     </Box>
