@@ -66,8 +66,6 @@ export default function About({ textTypes, activeUser }) {
         } else {
             setAdminUser(false)
         };
-
-        console.log(token);
     }, [activeUser])
 
 
