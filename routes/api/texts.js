@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator");
 
-const Text = require("../../models/Text")
+const Text = require("../../models/Text");
 
 // @route GET api/texts
 // @desc Return text type per id
@@ -60,7 +60,6 @@ router.post("/", [
             console.error(err.message);
             res.status(500).send("Server error");
         }
-
     });
 
 // @route PUT api/texts
@@ -99,7 +98,6 @@ router.put("/", [
             console.error(err.message);
             res.status(500).send("Server error");
         }
-
     });
 
 module.exports = router;

@@ -13,6 +13,7 @@ app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/textTypes", require("./routes/api/textTypes"));
 app.use("/api/texts", require("./routes/api/texts"));
+app.use("/api/services", require("./routes/api/services"));
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static('client/build'));
