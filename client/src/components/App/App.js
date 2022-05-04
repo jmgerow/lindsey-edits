@@ -18,6 +18,7 @@ import Contact from "../Contact/Contact";
 export default function App() {
   const [textTypes, setTextTypes] = useState([])
   const [activeUser, setActiveUser] = useState({})
+  const [adminUser, setAdminUser] = useState(false)
   const footerHeight = "80px";
 
   useEffect(() => {
@@ -31,6 +32,31 @@ export default function App() {
     }
   }, [textTypes])
 
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      fetch(`/api/auth`, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token
+        }
+      }).then(res => {
+        if (!res.ok) {
+          throw new Error(res.json())
+        }
+        return res.json()
+      }).then(json => {
+        console.log(json)
+        setAdminUser(true)
+      }).catch(err => {
+        console.log(err);
+        setAdminUser(false);
+      })
+    } else {
+      setAdminUser(false)
+    };
+  }, [activeUser])
+
   return (
     <div className="App" style={{ overflow: "scroll" }}>
       <ThemeProvider theme={theme}>
@@ -43,14 +69,14 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<Services />} />
-                <Route path="/about" element={<About textTypes={textTypes} activeUser={activeUser} />} />
+                <Route path="/about" element={<About textTypes={textTypes} adminUser={adminUser} />} />
                 <Route path="/contact" element={<Contact />} />
               </Routes>
             </Box>
             <Box sx={{ height: footerHeight }}></Box>
           </Box>
           <Box sx={{ minHeight: footerHeight, backgroundColor: "primary.lightest" }}>
-            <Footer setActiveUser={setActiveUser} />
+            <Footer setActiveUser={setActiveUser} adminUser={adminUser} />
           </Box>
         </BrowserRouter>
       </ThemeProvider>

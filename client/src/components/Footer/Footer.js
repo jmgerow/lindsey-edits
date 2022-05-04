@@ -7,7 +7,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LoginModal from "../Modals/LoginModal/LoginModal";
 import EmailIcon from '@mui/icons-material/Email';
 
-export default function Home({ setActiveUser }) {
+export default function Home({ setActiveUser, adminUser }) {
     return (
         <Box className="Footer-container">
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -29,7 +29,7 @@ export default function Home({ setActiveUser }) {
             </Box>
             <Box sx={{ marginLeft: "auto" }}>
                 <Box sx={{ display: "flex", justifyContent: "end" }}>
-                    <LoginModal title="Login" setActiveUser={setActiveUser} />
+                    <LoginModal title="Login" setActiveUser={setActiveUser} adminUser={adminUser} />
                 </Box>
                 <Box sx={{ marginTop: "20px" }}>
                     <Typography variant="body2" color="primary.light">

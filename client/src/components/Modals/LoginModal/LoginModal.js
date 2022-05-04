@@ -18,7 +18,7 @@ const style = {
     p: 4,
 };
 
-export default function LoginModal({ title, setActiveUser }) {
+export default function LoginModal({ title, setActiveUser, adminUser }) {
     const [open, setOpen] = useState(false);
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -68,6 +68,11 @@ export default function LoginModal({ title, setActiveUser }) {
         })
     };
 
+    const handleLogout = () => {
+        sessionStorage.removeItem("token");
+        setActiveUser(null);
+    }
+
     const handleCancel = () => {
         handleClose();
         setEmail("");
@@ -77,20 +82,37 @@ export default function LoginModal({ title, setActiveUser }) {
 
     return (
         <Box>
-            <Typography
-                variant="body2"
-                onClick={handleOpen}
-                color="primary.light"
-                sx={{
-                    "&:hover": {
-                        cursor: "pointer"
-                    },
-                    width: "max-content",
-                    padding: "2px"
-                }}
-            >
-                Login
-            </Typography>
+            {adminUser ? (
+                <Typography
+                    variant="body2"
+                    onClick={handleLogout}
+                    color="primary.light"
+                    sx={{
+                        "&:hover": {
+                            cursor: "pointer"
+                        },
+                        width: "max-content",
+                        padding: "2px"
+                    }}
+                >
+                    Logout
+                </Typography>
+            ) : (
+                    <Typography
+                        variant="body2"
+                        onClick={handleOpen}
+                        color="primary.light"
+                        sx={{
+                            "&:hover": {
+                                cursor: "pointer"
+                            },
+                            width: "max-content",
+                            padding: "2px"
+                        }}
+                    >
+                        Login
+                    </Typography>
+                )}
             <Modal
                 open={open}
                 onClose={handleClose}

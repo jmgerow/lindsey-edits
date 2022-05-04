@@ -5,14 +5,12 @@ import Typography from "@mui/material/Typography";
 import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@mui/material/TextField';
 import ProfilePhoto from "../../assets/images/profile_photo.jpg";
-
 import EditModal from "../Modals/EditModal/EditModal";
 
-export default function About({ textTypes, activeUser }) {
+export default function About({ textTypes, adminUser }) {
     const [aboutText, setAboutText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [textId, setTextId] = useState("");
-    const [adminUser, setAdminUser] = useState(false)
 
     const getAboutText = (textTypeId) => {
         setIsLoading(true);
@@ -43,31 +41,6 @@ export default function About({ textTypes, activeUser }) {
             }
         };
     }, [textTypes, aboutText]);
-
-    useEffect(() => {
-        const token = sessionStorage.getItem("token");
-        if (token) {
-            fetch(`/api/auth`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-auth-token": token
-                }
-            }).then(res => {
-                if (!res.ok) {
-                    throw new Error(res.json())
-                }
-                return res.json()
-            }).then(json => {
-                setAdminUser(true)
-            }).catch(err => {
-                console.log(err);
-                setAdminUser(false);
-            })
-        } else {
-            setAdminUser(false)
-        };
-    }, [activeUser])
-
 
     return (
         <Box>
