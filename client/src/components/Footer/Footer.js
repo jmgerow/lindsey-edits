@@ -29,7 +29,7 @@ export default function Home({ setActiveUser, adminUser }) {
             </Box>
             <Box sx={{ marginLeft: "auto" }}>
                 <Box sx={{ display: "flex", justifyContent: "end" }}>
-                    <LoginModal title="Login" setActiveUser={setActiveUser} adminUser={adminUser} />
+                    <LoginModal title="Log In" setActiveUser={setActiveUser} adminUser={adminUser} />
                 </Box>
                 <Box sx={{ marginTop: "20px" }}>
                     <Typography variant="body2" color="primary.light">

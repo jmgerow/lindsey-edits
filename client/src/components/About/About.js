@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@mui/material/TextField';
 import ProfilePhoto from "../../assets/images/profile_photo.jpg";
 import EditModal from "../Modals/EditModal/EditModal";
+import Grid from "@mui/material/Grid";
 
 export default function About({ textTypes, adminUser }) {
     const [aboutText, setAboutText] = useState("");
@@ -47,7 +48,7 @@ export default function About({ textTypes, adminUser }) {
             <Box className="App-page-body">
                 <Box sx={{ display: "flex" }}>
                     <Typography variant="h1" color="primary.light">
-                        About Lindsey
+                        Hi! I'm Lindsey.
                     </Typography>
                     {adminUser &&
                         <Box sx={{ marginLeft: "auto" }}>
@@ -67,24 +68,30 @@ export default function About({ textTypes, adminUser }) {
                         </Box>
                     ) : (
                             <Box sx={{ display: "flex" }}>
-                                <Box sx={{ margin: "10px 20px 0 0" }}>
-                                    <img src={ProfilePhoto} alt="banner" height="380px"></img>
-                                </Box>
-                                <TextField
-                                    variant="standard"
-                                    value={aboutText}
-                                    size="small"
-                                    fullWidth
-                                    multiline
-                                    InputProps={{
-                                        disableUnderline: true,
-                                    }}
-                                    inputProps={{
-                                        sx: {
-                                            color: "primary.main"
-                                        }
-                                    }}
-                                />
+                                <Grid container>
+                                    <Grid item xs={12} md={5}>
+                                        <Box sx={{ margin: "10px 20px 0 0" }}>
+                                            <img src={ProfilePhoto} alt="banner" height="380px"></img>
+                                        </Box>
+                                    </Grid>
+                                    <Grid item xs={12} md={7}>
+                                        <TextField
+                                            variant="standard"
+                                            value={aboutText}
+                                            size="small"
+                                            fullWidth
+                                            multiline
+                                            InputProps={{
+                                                disableUnderline: true,
+                                            }}
+                                            inputProps={{
+                                                sx: {
+                                                    color: "primary.main"
+                                                }
+                                            }}
+                                        />
+                                    </Grid>
+                                </Grid>
                             </Box>
                         )}
                 </Box>

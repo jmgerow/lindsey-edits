@@ -14,7 +14,7 @@ export default function NavBar() {
                     <Box sx={{ padding: "10px 0", display: "inline-block", verticalAlign: "middle" }}>
                         <Link to="/" style={{ textDecoration: "none" }}>
                             <Typography variant="h1" color="primary.main" sx={{ marginBottom: "10px" }}>
-                                Lindsey Lewandowski
+                                LINDSEY LEWANDOWSKI
                             </Typography>
                         </Link>
                         <Typography variant="h3" color="primary.light" sx={{ display: "flex" }}>

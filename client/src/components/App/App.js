@@ -46,7 +46,6 @@ export default function App() {
         }
         return res.json()
       }).then(json => {
-        console.log(json)
         setAdminUser(true)
       }).catch(err => {
         console.log(err);
@@ -68,7 +67,7 @@ export default function App() {
             <Box sx={{ height: "100%" }}>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/services" element={<Services />} />
+                <Route path="/services" element={<Services adminUser={adminUser} />} />
                 <Route path="/about" element={<About textTypes={textTypes} adminUser={adminUser} />} />
                 <Route path="/contact" element={<Contact />} />
               </Routes>

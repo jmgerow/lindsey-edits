@@ -25,27 +25,33 @@ const theme = createTheme({
     typography: {
         h1: {
             fontSize: "30px",
-            lineHeight: "32px"
+            lineHeight: "32px",
+            fontFamily: "Wensley"
         },
         h2: {
             fontSize: "24px",
-            lineHeight: "26px"
+            lineHeight: "26px",
+            fontFamily: "Wensley"
         },
         h3: {
             fontSize: "18px",
-            lineHeight: "20px"
+            lineHeight: "20px",
+            fontFamily: "Wensley"
         },
         body1: {
             fontSize: "16px",
-            lineHeight: "18px"
+            lineHeight: "18px",
+            fontFamily: "Wensley"
         },
         body2: {
             fontSize: "14px",
-            lineHeight: "16px"
+            lineHeight: "16px",
+            fontFamily: "Wensley"
         },
         body3: {
             fontSize: "12px",
-            lineHeight: "14px"
+            lineHeight: "14px",
+            fontFamily: "Wensley"
         }
     }
 });

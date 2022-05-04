@@ -95,7 +95,7 @@ export default function LoginModal({ title, setActiveUser, adminUser }) {
                         padding: "2px"
                     }}
                 >
-                    Logout
+                    Log Out
                 </Typography>
             ) : (
                     <Typography
@@ -110,7 +110,7 @@ export default function LoginModal({ title, setActiveUser, adminUser }) {
                             padding: "2px"
                         }}
                     >
-                        Login
+                        Log In
                     </Typography>
                 )}
             <Modal
@@ -157,7 +157,7 @@ export default function LoginModal({ title, setActiveUser, adminUser }) {
                         </Box>
                         <Box sx={{ marginLeft: "20px" }}>
                             <PrimaryButton
-                                buttonText="Login"
+                                buttonText="Log In"
                                 onClick={handleLogin}
                                 disabled={isLoading}
                                 isLoading={isLoading}
