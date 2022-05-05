@@ -1,6 +1,6 @@
 import React from "react";
 import Box from '@mui/material/Box';
-import BannerPhoto from "../../assets/images/banner-photo.jpeg";
+import TypewriterBanner from "../../assets/images/typewriter_banner.jpeg";
 import Grid from '@mui/material/Grid';
 import StyledCard from "../StyledCard/StyledCard";
 
@@ -25,7 +25,7 @@ export default function Home() {
 
     return (
         <Box>
-            <img src={BannerPhoto} alt="banner" width="100%"></img>
+            <img src={TypewriterBanner} alt="banner" width="100%"></img>
             <Box className="App-page-body" sx={{ margin: "50px 0" }}>
                 <Grid container spacing={3}>
                     {homeCards.map((card, i) => (
