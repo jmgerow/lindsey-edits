@@ -9,12 +9,20 @@ const Service = require("../../models/Service");
 // @desc Return array of services
 // @access Public
 router.get("/", async (req, res) => {
-    const query = req.query
-
     try {
-        const services = await Service.find().exec();
+        const services = await Service.find().sort({ sequence: 1 }).exec();
 
-        res.json(services)
+        const parsedServices = services.map(service => {
+            return {
+                id: service.id,
+                text: service.text,
+                title: service.title,
+                sequence: service.sequence,
+                date: service.date
+            }
+        })
+
+        res.json(parsedServices)
     } catch (err) {
         console.error(err.message)
         res.status(500).send("Server Error")

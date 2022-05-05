@@ -3,12 +3,18 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import CircularProgress from '@mui/material/CircularProgress';
-import StyledCard from "../StyledCard/StyledCard";
 import ServicesUpdateModal from "../ServicesUpdateModal/ServicesUpdateModal";
+import ServicesCard from "../ServicesCard/ServicesCard"
 
 export default function Services({ adminUser }) {
     const [services, setServices] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+
+    const sortServices = (s) => {
+        return s.sort(function (a, b) {
+            return a.sequence - b.sequence;
+        })
+    }
 
     const getServices = () => {
         setIsLoading(true);
@@ -27,18 +33,34 @@ export default function Services({ adminUser }) {
     }
 
     const updateServices = (updatedService) => {
-        //TODO account for if service already exists
         const updatedServices = [...services]
+        const index = updatedServices.findIndex(s => s.id === updatedService.id)
 
-        updatedServices.push(updatedService)
-        setServices(updatedServices)
+        if (index !== -1) {
+            updatedServices.splice(index, 1, updatedService);
+        } else {
+            updatedServices.push(updatedService);
+        }
+
+        updatedServices.sort(function (a, b) {
+            return b.sequence - a.sequence;
+        })
+
+        setServices(sortServices(updatedServices));
+    };
+
+    const removeService = (service) => {
+        const updatedServices = [...services];
+        const index = updatedServices.findIndex(s => s.id === service.id)
+
+        updatedServices.splice(index, 1);
+
+        setServices(updatedServices);
     }
 
     useEffect(() => {
-        if (!services.length) {
-            getServices();
-        }
-    }, [services])
+        getServices();
+    }, [])
 
     return (
         <Box className="App-page-body">
@@ -64,7 +86,12 @@ export default function Services({ adminUser }) {
                     <Grid container sx={{ marginTop: "30px" }} spacing={3}>
                         {services.map((service, i) => (
                             <Grid key={`service-card-${i}`} item xs={12}>
-                                <StyledCard title={service.title} text={service.text} />
+                                <ServicesCard
+                                    service={service}
+                                    adminUser={adminUser}
+                                    updateServices={updateServices}
+                                    removeService={removeService}
+                                />
                             </Grid>
                         ))}
                     </Grid>

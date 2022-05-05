@@ -42,6 +42,18 @@ export default function ServicesUpdateModal({ modalTitle, type, service, updateS
         setSequence(event.target.value);
     };
 
+    const setDefaults = () => {
+        if (service) {
+            setTitle(service.title);
+            setText(service.text);
+            setSequence(service.sequence);
+        } else {
+            setTitle("");
+            setText("");
+            setSequence("");
+        }
+    }
+
     const createNewService = () => {
         const token = sessionStorage.getItem("token");
         const payload = {
@@ -86,7 +98,7 @@ export default function ServicesUpdateModal({ modalTitle, type, service, updateS
             body: JSON.stringify(payload)
         }).then(res => res.json())
             .then(data => {
-                updateServices(data.enteredService);
+                updateServices(data.updatedService);
                 handleClose();
                 setIsLoading(false);
             }).catch(err => {
@@ -105,17 +117,12 @@ export default function ServicesUpdateModal({ modalTitle, type, service, updateS
 
     const handleCancel = () => {
         handleClose();
-        setTitle("");
-        setText("");
-        setSequence("");
+        setDefaults();
     };
 
     useEffect(() => {
-        if (service) {
-            setTitle(service.title);
-            setText(service.text);
-            setSequence(service.sequence);
-        }
+        setDefaults();
+        //eslint-disable-next-line
     }, [service]);
 
     return (
@@ -154,7 +161,7 @@ export default function ServicesUpdateModal({ modalTitle, type, service, updateS
                             onChange={handleTextChange}
                             fullWidth
                             multiline
-                            maxRows={10}
+                            rows={10}
                         />
                     </Box>
                     <Box sx={{ margin: "20px 0" }}>
