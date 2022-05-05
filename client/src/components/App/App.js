@@ -46,7 +46,7 @@ export default function App() {
         }
         return res.json()
       }).then(json => {
-        setAdminUser(true)
+        setAdminUser(json.isAdmin)
       }).catch(err => {
         console.log(err);
         setAdminUser(false);

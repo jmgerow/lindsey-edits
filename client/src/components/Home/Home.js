@@ -29,7 +29,7 @@ export default function Home() {
             <Box className="App-page-body" sx={{ margin: "50px 0" }}>
                 <Grid container spacing={3}>
                     {homeCards.map((card, i) => (
-                        <Grid key={`card-${i}`} item sx={12} sm={6} md={4}>
+                        <Grid key={`card-${i}`} item xs={12} sm={6} md={4}>
                             <StyledCard
                                 title={card.title}
                                 text={card.text}

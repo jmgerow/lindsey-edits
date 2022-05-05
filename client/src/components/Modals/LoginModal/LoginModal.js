@@ -26,7 +26,14 @@ export default function LoginModal({ title, setActiveUser, adminUser }) {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+
+    const handleClose = () => {
+        setOpen(false);
+        setEmail("");
+        setPassword("");
+        setErrorMessage("");
+    };
+
     const handleChangeEmail = event => {
         setEmail(event.target.value);
     };
@@ -137,6 +144,7 @@ export default function LoginModal({ title, setActiveUser, adminUser }) {
                         <TextField
                             variant="outlined"
                             label="Password"
+                            type="password"
                             size="small"
                             value={password}
                             onChange={handleChangePassword}

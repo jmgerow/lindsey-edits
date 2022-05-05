@@ -48,6 +48,10 @@ router.post("/", [
                 return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
             }
 
+            if (!user.isAdmin) {
+                return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
+            }
+
             const payload = {
                 user: {
                     id: user.id
